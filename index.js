@@ -37,4 +37,13 @@ for (const file of eventFiles) {
     }
 }
 
+async function shutdown(signal) {
+    console.log(`Received ${signal}, logging out...`);
+    await client.destroy();
+    process.exit(0);
+}
+
+process.on('SIGTERM', () => shutdown('SIGTERM'));
+process.on('SIGINT', () => shutdown('SIGINT'));
+
 client.login(process.env.DISCORD_TOKEN);
