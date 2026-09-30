@@ -4,7 +4,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('purge')
         .setDescription('Deletes recent messages in this channel')
-        .addIntegerOPtion((option) =>
+        .addIntegerOption((option) =>
             option
                 .setName('amount')
                 .setDescription('How many messages to delete (default: all from the last 14 days)')
