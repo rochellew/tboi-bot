@@ -22,7 +22,9 @@ module.exports = {
         // older than 14 days (Discord can't bulk-delete those) instead of throwing
         let deleted = 0;
         while (deleted < amount) {
-            const batch = await interaction.channel.bulkDelete(Math.min(amount - deleted, 100), true);
+            const messages = await interaction.channel.messages.fetch({ limit: 100 });
+            const unpinned = messages.filter((message) => !message.pinned).first(amount - deleted);
+            const batch = await interaction.channel.bulkDelete(unpinned, true);
             deleted += batch.size;
             if (batch.size === 0) break; // nothing left that's able to be deleted
         }
