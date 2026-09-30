@@ -16,13 +16,13 @@ jobs:
       - uses: actions/checkout@v4
       
       - id: build
-        uses: redhat-actions/buildah-build@v2
+        uses: redhat-actions/buildah-build@v3
         with:
           image: tboi-bot
           tags: latest ${{ github.sha }}
           containerfiles: ./Containerfile
 
-      - uses: redhat-actions/push-to-registry@v2
+      - uses: redhat-actions/push-to-registry@v3
         with:
           image: ${{ steps.build.outputs.image }}
           tags: ${{ steps.build.outputs.tags }}
