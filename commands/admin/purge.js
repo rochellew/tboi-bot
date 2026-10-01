@@ -29,6 +29,6 @@ module.exports = {
             if (batch.size === 0) break; // nothing left that's able to be deleted
         }
 
-        await interaction.editReply(`${deleted} message(s) deleted.`);
+        await interaction.editReply(`Deleted ${deleted} messages.`);
     },
 };
